@@ -1,13 +1,17 @@
 {
   "resources": [
     {"id":{"name":"spr_crowd","path":"sprites/spr_crowd/spr_crowd.yy",},"order":2,},
+    {"id":{"name":"obj_end_manager","path":"objects/obj_end_manager/obj_end_manager.yy",},"order":4,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":1,},
-    {"id":{"name":"obj_view","path":"objects/obj_view/obj_view.yy",},"order":2,},
+    {"id":{"name":"obj_view_manager","path":"objects/obj_view_manager/obj_view_manager.yy",},"order":2,},
     {"id":{"name":"spr_player1","path":"sprites/spr_player1/spr_player1.yy",},"order":0,},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},"order":1,},
     {"id":{"name":"spr_background_ring","path":"sprites/spr_background_ring/spr_background_ring.yy",},"order":3,},
     {"id":{"name":"spr_player2","path":"sprites/spr_player2/spr_player2.yy",},"order":1,},
     {"id":{"name":"rm_end","path":"rooms/rm_end/rm_end.yy",},"order":2,},
+    {"id":{"name":"spr_button","path":"sprites/spr_button/spr_button.yy",},"order":4,},
+    {"id":{"name":"obj_start_manager","path":"objects/obj_start_manager/obj_start_manager.yy",},"order":3,},
+    {"id":{"name":"obj_button","path":"objects/obj_button/obj_button.yy",},"order":5,},
     {"id":{"name":"obj_player_manager","path":"objects/obj_player_manager/obj_player_manager.yy",},"order":0,},
     {"id":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},"order":0,},
   ],
@@ -31,8 +35,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},},
     {"roomId":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
+    {"roomId":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},},
     {"roomId":{"name":"rm_end","path":"rooms/rm_end/rm_end.yy",},},
   ],
   "Folders": [

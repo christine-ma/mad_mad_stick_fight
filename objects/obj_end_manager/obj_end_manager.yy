@@ -25,7 +25,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_view",
+  "name": "obj_end_manager",
   "tags": [],
   "resourceType": "GMObject",
 }

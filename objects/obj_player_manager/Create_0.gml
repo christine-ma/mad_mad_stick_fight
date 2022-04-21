@@ -10,5 +10,5 @@ attack = 0;
 death = 1;
 
 
-
-
+left_key = ord("A");
+right_key = ord("D");
