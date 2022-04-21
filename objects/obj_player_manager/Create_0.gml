@@ -2,8 +2,8 @@
 
 //Player Data
 
-//3 lives + Health Bar
-player_lives = 3
+//Health Bar
+player_health = 10;
 
 //Player States
 attack = 0;
