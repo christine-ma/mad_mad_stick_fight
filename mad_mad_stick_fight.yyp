@@ -8,6 +8,8 @@
     {"id":{"name":"spr_playerPink","path":"sprites/spr_playerPink/spr_playerPink.yy",},"order":0,},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},"order":1,},
     {"id":{"name":"spr_background_ring","path":"sprites/spr_background_ring/spr_background_ring.yy",},"order":3,},
+    {"id":{"name":"obj_shadow","path":"objects/obj_shadow/obj_shadow.yy",},"order":10,},
+    {"id":{"name":"spr_shadow","path":"sprites/spr_shadow/spr_shadow.yy",},"order":6,},
     {"id":{"name":"fnt_health","path":"fonts/fnt_health/fnt_health.yy",},"order":0,},
     {"id":{"name":"spr_playerBlue","path":"sprites/spr_playerBlue/spr_playerBlue.yy",},"order":1,},
     {"id":{"name":"rm_end","path":"rooms/rm_end/rm_end.yy",},"order":2,},

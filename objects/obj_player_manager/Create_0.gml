@@ -1,3 +1,6 @@
+
+global.stage_height = 700;//adjust to the ring height
+
 //Player Data
 
 //Health Bar
@@ -5,10 +8,13 @@ current_health = 10;
 
 //Player States
 is_on_ground = true;
+combo = false;
 
-//actions
-//damaged - lose health when hit by other player
-is_hit = false; //true = stun and shake screen
+
+//Stop all player movement for a small time frame
+stop_movement = false;
+stop_frames = 0;
+stop_max_frames = 10;
 
 left_key = ord("A");
 right_key = ord("D");
@@ -34,3 +40,8 @@ move_speed=6;
 //Spawn Player Blue and Player Pink
 //Set opponent
 opponent = obj_playerPink;
+
+//Generate shadows for player
+shadow_blue = instance_create_layer(x,y,"players",obj_shadow);
+shadow_pink = instance_create_layer(x,y,"players",obj_shadow);
+shadow_pink.player = obj_playerPink;

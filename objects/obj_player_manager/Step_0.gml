@@ -3,50 +3,94 @@ move_right = keyboard_check(right_key);
 jump = keyboard_check(jump_key);
 attack = keyboard_check_pressed(attack_key);
 
-
-//slow the player down a little every frame (helps to make it easier to control)
-current_x_velocity *= 0.9;
-//gravity accelerates the player down.
-current_y_velocity += grav;
-
-//Change to jumping in air 
-if(jump and is_on_ground == true){
-	current_y_velocity = bounce_velocity;
-	is_on_ground = false;
-}
-
-//Player Attacks
-attack_collision = place_meeting(x,y,opponent);
-if(attack and attack_collision){
+//Stop user input movement
+if(stop_movement == true){
+	if(stop_frames > stop_max_frames){
+		stop_movement = false;
+		stop_frames = 0;
+	}
+	stop_frames++;
 	
-		opponent.current_health--;
-		obj_view_manager.shake = true;
-	
-	
-	
-}
-
-
-if(is_on_ground){
-	//Todo: make boundary for moving on ground
-		if(move_left){
-			x -= move_speed;
-		}
-		if(move_right){
-			x += move_speed;
-		}
 }
 else{
-	jump_state();
+	//slow the player down a little every frame (helps to make it easier to control)
+	current_x_velocity *= 0.9;
+	//gravity accelerates the player down.
+	current_y_velocity += grav;
+
+	//Change to jumping in air 
+	if(jump and is_on_ground == true){
+		current_y_velocity = bounce_velocity;
+		is_on_ground = false;
+	}
+
+	//Player Attacks
+	opponent_collision = place_meeting(x,y,opponent);
+
+	if(attack and opponent_collision){
+			opponent.current_health--;
+			//knock opponent back
+			if(image_xscale == -1){
+				opponent.x -= 45;
+			}
+			else if (image_xscale == 1){
+				opponent.x += 45;
+			}
+			obj_view_manager.shake = true;
+			stop_movement = true;
+			opponent.stop_movement = true;
+	}
+
+
+	//Change player depth
+	if(opponent_collision and (move_left or move_right)){
+		depth = opponent.depth-5;
+	}
+
+
+	if(is_on_ground){
+		//Todo: make boundary for moving on ground
+			if(move_left){
+				image_xscale = -1	
+				x -= move_speed;
+			}
+			if(move_right){
+				image_xscale = 1	
+				x += move_speed;
+			}
+	}
+	else{
+		jump_state();
+	}
+
+	if (current_x_velocity > 0){
+		image_xscale = -1	
+		
+	}
+	else if (current_x_velocity < 0){
+		image_xscale = 1	
+	}
+	combo_collision = place_meeting(x,y,obj_combo_activator);
+	if(combo_collision){
+		combo = true;
+		obj_combo_manager.combo_activated = true;
+	}
 }
 
-if (current_x_velocity > 0){
-	image_xscale = -1	
-		
+if(combo == true){
+	//Decrease opponent attack
+	//Show animation
+	if(combo_frames > combo_max_frames){
+		combo = false;
+		obj_combo_activator.combo_activated = false;
+	}
+	combo_frames++
 }
-else if (current_x_velocity < 0){
-	image_xscale = 1	
+if(player.current_health == 0){
+	//Game over
+	//Death State
 }
+//Player Stage Boundaries
 
 
 function jump_state(){
