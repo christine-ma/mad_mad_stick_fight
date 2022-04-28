@@ -5,6 +5,10 @@ attack = keyboard_check_pressed(attack_key);
 
 //Stop user input movement
 if(stop_movement == true){
+	jump = noone;
+	move_left = noone;
+	move_right = noone;
+	attack = noone;
 	if(stop_frames > stop_max_frames){
 		stop_movement = false;
 		stop_frames = 0;
@@ -23,31 +27,6 @@ else{
 		current_y_velocity = bounce_velocity;
 		is_on_ground = false;
 	}
-
-	//Player Attacks
-	opponent_collision = place_meeting(x,y,opponent);
-
-	if(attack and opponent_collision){
-			opponent.current_health--;
-			//knock opponent back
-			if(image_xscale == -1){
-				opponent.x -= 45;
-			}
-			else if (image_xscale == 1){
-				opponent.x += 45;
-			}
-			obj_view_manager.shake = true;
-			stop_movement = true;
-			opponent.stop_movement = true;
-	}
-
-
-	//Change player depth
-	if(opponent_collision and (move_left or move_right)){
-		depth = opponent.depth-5;
-	}
-
-
 	if(is_on_ground){
 		//Todo: make boundary for moving on ground
 			if(move_left){
@@ -63,6 +42,36 @@ else{
 		jump_state();
 	}
 
+	//Player Attacks
+	opponent_collision = place_meeting(x,y,opponent);
+
+	if(attack and opponent_collision){
+			opponent.current_health--;
+			//knock opponent back
+			if(image_xscale == -1){
+				opponent.x -= 45;
+			}
+			else if (image_xscale == 1){
+				opponent.x += 45;
+			}
+			jump = noone;
+			move_left = noone;
+			move_right = noone;
+			attack = noone;
+			obj_view_manager.shake = true;
+			stop_movement = true;
+			opponent.stop_movement = true;
+	}
+
+
+	//Change player depth
+	if(opponent_collision and (move_left or move_right)){
+		depth = opponent.depth-5;
+	}
+
+
+	
+
 	if (current_x_velocity > 0){
 		image_xscale = -1	
 		
@@ -73,21 +82,24 @@ else{
 	combo_collision = place_meeting(x,y,obj_combo_activator);
 	if(combo_collision){
 		combo = true;
+		//Possible set stop movement to true
 		obj_combo_manager.combo_activated = true;
 	}
 }
 
-if(combo == true){
+if(combo == true){ 
 	//Decrease opponent attack
 	//Show animation
-	if(combo_frames > combo_max_frames){
+	if(obj_combo_manager.combo_activated_frames > obj_combo_manager.combo_activated_max_frames){
 		combo = false;
-		obj_combo_activator.combo_activated = false;
+		obj_combo_manager.combo_activated_frames = 0;
+		obj_combo_manager.combo_activated = false;
 	}
-	combo_frames++
+	obj_combo_manager.combo_activated_frames++
 }
-if(player.current_health == 0){
+if(current_health == 0){
 	//Game over
+	//room_goto(rm_end);
 	//Death State
 }
 //Player Stage Boundaries
@@ -158,8 +170,8 @@ function jump_state(){
 					}
 				}
 			}*/
-			if(y>room_height-100){
-				y = room_height-100;
+			if(y > player_stageY){
+				y = player_stageY;
 				is_on_ground = true;
 			}
 		}

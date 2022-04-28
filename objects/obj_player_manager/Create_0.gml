@@ -1,6 +1,7 @@
 
 global.stage_height = 700;//adjust to the ring height
-
+player_stageY = global.stage_height-85;;
+y = player_stageY
 //Player Data
 
 //Health Bar
@@ -14,7 +15,7 @@ combo = false;
 //Stop all player movement for a small time frame
 stop_movement = false;
 stop_frames = 0;
-stop_max_frames = 10;
+stop_max_frames = 50;
 
 left_key = ord("A");
 right_key = ord("D");

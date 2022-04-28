@@ -6,5 +6,7 @@ combo_frames = 0;
 combo_max_frames =  irandom_range(300, 450);
 
 combo_activated = false;
+combo_activated_frames = 0;
+combo_activated_max_frames = 100;
 
 
