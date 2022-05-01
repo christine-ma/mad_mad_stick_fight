@@ -8,6 +8,7 @@
     {"id":{"name":"obj_combo_activator","path":"objects/obj_combo_activator/obj_combo_activator.yy",},"order":9,},
     {"id":{"name":"spr_playerPink","path":"sprites/spr_playerPink/spr_playerPink.yy",},"order":0,},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},"order":1,},
+    {"id":{"name":"spr_playerPinkAttack","path":"sprites/spr_playerPinkAttack/spr_playerPinkAttack.yy",},"order":10,},
     {"id":{"name":"obj_attack_collision","path":"objects/obj_attack_collision/obj_attack_collision.yy",},"order":11,},
     {"id":{"name":"spr_background_ring","path":"sprites/spr_background_ring/spr_background_ring.yy",},"order":3,},
     {"id":{"name":"temporal","path":"sprites/temporal/temporal.yy",},"order":7,},
