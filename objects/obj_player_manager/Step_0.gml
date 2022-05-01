@@ -12,6 +12,8 @@ if(stop_movement == true){
 	if(stop_frames > stop_max_frames){
 		stop_movement = false;
 		stop_frames = 0;
+		opponent.is_hit=false;
+		instance_destroy(obj_attack_collision);
 	}
 	stop_frames++;
 	
@@ -43,21 +45,22 @@ else{
 	}
 
 	//Player Attacks
-	opponent_collision = place_meeting(x,y,opponent);
-
-	if(attack and opponent_collision){
+	//opponent_collision = place_meeting(x,y,opponent);
+	opponent_collision = collision_rectangle(x-15, y-10, x+15, y+10, opponent,false, true);
+	if(attack and opponent_collision and opponent.is_hit==false){
 			opponent.current_health--;
 			//knock opponent back
 			if(image_xscale == -1){
-				opponent.x -= 45;
+				opponent.x -= 60;
 			}
 			else if (image_xscale == 1){
-				opponent.x += 45;
+				opponent.x += 60;
 			}
-			jump = noone;
-			move_left = noone;
-			move_right = noone;
-			attack = noone;
+			//Set the opponent is hit to true to avoid multiple collision checks
+			opponent.is_hit = true;
+			attack_collision = instance_create_layer(opponent.x,opponent.y+30,"objects",obj_attack_collision);
+			attack_collision.depth = opponent.depth-10;
+			
 			obj_view_manager.shake = true;
 			stop_movement = true;
 			opponent.stop_movement = true;
@@ -68,8 +71,6 @@ else{
 	if(opponent_collision and (move_left or move_right)){
 		depth = opponent.depth-5;
 	}
-
-
 	
 
 	if (current_x_velocity > 0){

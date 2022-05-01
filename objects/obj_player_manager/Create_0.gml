@@ -10,12 +10,12 @@ current_health = 10;
 //Player States
 is_on_ground = true;
 combo = false;
-
+is_hit = false;
 
 //Stop all player movement for a small time frame
 stop_movement = false;
 stop_frames = 0;
-stop_max_frames = 50;
+stop_max_frames = 15;
 
 left_key = ord("A");
 right_key = ord("D");
@@ -30,9 +30,9 @@ current_y_velocity = 0;
 true_x = 0;
 true_y = 0;
 
-grav = 0.7;
+grav = 0.85;
 
-bounce_velocity = -18;//need this to be a negative value so we move upwards
+bounce_velocity = -25;//need this to be a negative value so we move upwards
 player_acceleration = 1.5;
 
 //Move when on ground

@@ -6,4 +6,4 @@ right_key = vk_right;
 jump_key = vk_up;
 attack_key = vk_down;
 
-image_xscale = -1;
+image_xscale = -1	
