@@ -30,7 +30,7 @@ else{
 		is_on_ground = false;
 	}
 	if(is_on_ground){
-		//Todo: make boundary for moving on ground
+			
 			if(move_left){
 				image_xscale = -1	
 				x -= move_speed;
@@ -51,10 +51,10 @@ else{
 			opponent.current_health--;
 			//knock opponent back
 			if(image_xscale == -1){
-				opponent.x -= 60;
+				opponent.x -= 70;
 			}
 			else if (image_xscale == 1){
-				opponent.x += 60;
+				opponent.x += 70;
 			}
 			//Set the opponent is hit to true to avoid multiple collision checks
 			opponent.is_hit = true;
@@ -71,7 +71,6 @@ else{
 	if(opponent_collision and (move_left or move_right)){
 		depth = opponent.depth-5;
 	}
-	
 
 	if (current_x_velocity > 0){
 		image_xscale = -1	
@@ -80,7 +79,7 @@ else{
 	else if (current_x_velocity < 0){
 		image_xscale = 1	
 	}
-	combo_collision = place_meeting(x,y,obj_combo_activator);
+	combo_collision = collision_rectangle(x-10,y-10,x+10,y+10,obj_combo_activator,false,true)
 	if(combo_collision){
 		combo = true;
 		//Possible set stop movement to true
@@ -103,8 +102,15 @@ if(current_health == 0){
 	//room_goto(rm_end);
 	//Death State
 }
-//Player Stage Boundaries
 
+offset_boundary = 125;
+//Player Stage Boundaries
+if(x > room_width-offset_boundary){
+	x = room_width-offset_boundary;
+}
+if(x < offset_boundary){
+	x = offset_boundary;
+}
 
 function jump_state(){
 	if(move_left){
