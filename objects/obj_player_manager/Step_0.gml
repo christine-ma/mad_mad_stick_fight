@@ -60,7 +60,7 @@ if(stop_movement == true){
 
 	//Player Attacks
 	//opponent_collision = place_meeting(x,y,opponent);
-	opponent_collision = collision_rectangle(x-45, y-20, x+45, y+20, opponent,false, true);
+	opponent_collision = collision_rectangle(x-55, y-20, x+55, y+20, opponent,false, true);
 	if(attack){
 		
 		sprite_index = attack_sprite;
@@ -76,6 +76,9 @@ if(stop_movement == true){
 			}
 			if(opponent.x < offset_boundary-10){
 				opponent.x = offset_boundary;
+			}
+			if(image_xscale == opponent.image_xscale){
+				opponent.image_xscale *= -1;
 			}
 
 			//Set the opponent is hit to true to avoid multiple collision checks
@@ -115,7 +118,9 @@ if(combo == true){
 	}
 	obj_combo_manager.combo_activated_frames++
 }
+
 if(current_health == 0){
+	global.winner = idle_sprite;//blue player or pink player
 	//Game over
 	//room_goto(rm_end);
 	//Death State

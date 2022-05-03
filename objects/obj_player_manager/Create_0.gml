@@ -1,4 +1,4 @@
-
+global.winner = noone;
 global.stage_height = 700;//adjust to the ring height
 player_stageY = global.stage_height-85;;
 y = player_stageY

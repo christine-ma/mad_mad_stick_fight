@@ -14,4 +14,7 @@ y = camY;
 
 if(room == rm_game){
 	shake_amount = 3;
+	if(camY>0){
+		camY -= 5;
+	}
 }

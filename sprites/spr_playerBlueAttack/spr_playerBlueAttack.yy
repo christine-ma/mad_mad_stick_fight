@@ -50,7 +50,7 @@
     "spriteId": {"name":"spr_playerBlueAttack","path":"sprites/spr_playerBlueAttack/spr_playerBlueAttack.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 13.0,
+    "playbackSpeed": 20.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
