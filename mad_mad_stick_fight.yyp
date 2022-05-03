@@ -18,6 +18,7 @@
     {"id":{"name":"fnt_health","path":"fonts/fnt_health/fnt_health.yy",},"order":0,},
     {"id":{"name":"spr_playerBlue","path":"sprites/spr_playerBlue/spr_playerBlue.yy",},"order":1,},
     {"id":{"name":"rm_end","path":"rooms/rm_end/rm_end.yy",},"order":2,},
+    {"id":{"name":"fnt_title","path":"fonts/fnt_title/fnt_title.yy",},"order":1,},
     {"id":{"name":"obj_health_manager","path":"objects/obj_health_manager/obj_health_manager.yy",},"order":6,},
     {"id":{"name":"spr_button","path":"sprites/spr_button/spr_button.yy",},"order":4,},
     {"id":{"name":"spr_combo_activator","path":"sprites/spr_combo_activator/spr_combo_activator.yy",},"order":5,},

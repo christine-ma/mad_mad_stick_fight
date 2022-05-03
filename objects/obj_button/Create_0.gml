@@ -5,5 +5,5 @@ start_y = y;
 //Logic to go to the game room
 game_next_room = false;
 game_next_frames = 0;
-game_next_frames_max = 18;
+game_next_frames_max = 20;
 

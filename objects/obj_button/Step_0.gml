@@ -1,8 +1,12 @@
 if(game_next_room == true){
+	if(room == rm_start){
+		//move camera down
+		obj_view_manager.camY+=10;
+	}
 	if(game_next_frames > game_next_frames_max){
-		
+		obj_view_manager.camX = 0;
+		obj_view_manager.camY = 0;
 		room_goto(rm_game);
-		
 	}
 	game_next_frames++;
 }

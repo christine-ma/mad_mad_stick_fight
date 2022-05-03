@@ -5,6 +5,17 @@ attack = keyboard_check_pressed(attack_key);
 
 //Stop user input movement
 if(stop_movement == true){
+	if(is_hit){
+		
+		//knock opponent back
+		if(opponent.image_xscale == -1){
+			x -= 1.4*stop_frames;
+		}
+		else if (opponent.image_xscale == 1){
+			x += 1.4*stop_frames;
+		}
+	}
+
 	jump = noone;
 	move_left = noone;
 	move_right = noone;
@@ -18,7 +29,7 @@ if(stop_movement == true){
 	stop_frames++;
 	
 }
-else{
+
 	//slow the player down a little every frame (helps to make it easier to control)
 	current_x_velocity *= 0.9;
 	//gravity accelerates the player down.
@@ -49,7 +60,7 @@ else{
 
 	//Player Attacks
 	//opponent_collision = place_meeting(x,y,opponent);
-	opponent_collision = collision_rectangle(x-15, y-10, x+15, y+10, opponent,false, true);
+	opponent_collision = collision_rectangle(x-45, y-20, x+45, y+20, opponent,false, true);
 	if(attack){
 		
 		sprite_index = attack_sprite;
@@ -57,25 +68,29 @@ else{
 		if(opponent_collision and opponent.is_hit==false){
 		
 			opponent.current_health--;
-			//knock opponent back
-			if(image_xscale == -1){
-				opponent.x -= 70;
+			
+			
+			//Player Stage Boundaries
+			if(opponent.x > room_width-offset_boundary+10){
+				opponent.x = room_width-offset_boundary;
 			}
-			else if (image_xscale == 1){
-				opponent.x += 70;
+			if(opponent.x < offset_boundary-10){
+				opponent.x = offset_boundary;
 			}
+
 			//Set the opponent is hit to true to avoid multiple collision checks
 			opponent.is_hit = true;
 			attack_collision = instance_create_layer(opponent.x,opponent.y+30,"objects",obj_attack_collision);
 			attack_collision.depth = opponent.depth-10;
+			attack_collision.player = opponent;
 			
 			obj_view_manager.shake = true;
 			stop_movement = true;
 			opponent.stop_movement = true;
 		}
 	}
-
-
+	
+	
 	//Change player depth
 	if(opponent_collision and (move_left or move_right)){
 		depth = opponent.depth-5;
@@ -88,7 +103,7 @@ else{
 		//Possible set stop movement to true
 		obj_combo_manager.combo_activated = true;
 	}
-}
+
 
 if(combo == true){ 
 	//Decrease opponent attack
