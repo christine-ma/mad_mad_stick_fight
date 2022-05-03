@@ -36,7 +36,7 @@ bounce_velocity = -25;//need this to be a negative value so we move upwards
 player_acceleration = 1.5;
 
 //Move when on ground
-move_speed=6;
+move_speed = 6;
 
 //Spawn Player Blue and Player Pink
 //Set opponent
@@ -46,3 +46,11 @@ opponent = obj_playerPink;
 shadow_blue = instance_create_layer(x,y,"players",obj_shadow);
 shadow_pink = instance_create_layer(x,y,"players",obj_shadow);
 shadow_pink.player = obj_playerPink;
+
+
+//sprite visual
+idle_sprite = spr_playerBlue
+attack_sprite = spr_playerBlueAttack
+jump_sprite = spr_playerBlueJump
+
+sprite_index = idle_sprite;

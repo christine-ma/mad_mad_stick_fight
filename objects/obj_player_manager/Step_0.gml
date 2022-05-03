@@ -28,9 +28,12 @@ else{
 	if(jump and is_on_ground == true){
 		current_y_velocity = bounce_velocity;
 		is_on_ground = false;
+		sprite_index = jump_sprite;
 	}
 	if(is_on_ground){
-			
+			if(sprite_index != attack_sprite){
+				sprite_index = idle_sprite;
+			}
 			if(move_left){
 				image_xscale = -1	
 				x -= move_speed;
@@ -47,7 +50,12 @@ else{
 	//Player Attacks
 	//opponent_collision = place_meeting(x,y,opponent);
 	opponent_collision = collision_rectangle(x-15, y-10, x+15, y+10, opponent,false, true);
-	if(attack and opponent_collision and opponent.is_hit==false){
+	if(attack){
+		
+		sprite_index = attack_sprite;
+		
+		if(opponent_collision and opponent.is_hit==false){
+		
 			opponent.current_health--;
 			//knock opponent back
 			if(image_xscale == -1){
@@ -64,6 +72,7 @@ else{
 			obj_view_manager.shake = true;
 			stop_movement = true;
 			opponent.stop_movement = true;
+		}
 	}
 
 
@@ -72,13 +81,7 @@ else{
 		depth = opponent.depth-5;
 	}
 
-	if (current_x_velocity > 0){
-		image_xscale = -1	
-		
-	}
-	else if (current_x_velocity < 0){
-		image_xscale = 1	
-	}
+	
 	combo_collision = collision_rectangle(x-10,y-10,x+10,y+10,obj_combo_activator,false,true)
 	if(combo_collision){
 		combo = true;
@@ -188,7 +191,7 @@ function jump_state(){
 				sprite_index = idle;
 			}
 			else if (sprite_index != down) {
-				image_speed=1;
+				image_speed =1;
 				image_index = 0;
 				sprite_index = down;
 			}*/
