@@ -30,82 +30,82 @@ if(stop_movement == true){
 	
 }
 
-	//slow the player down a little every frame (helps to make it easier to control)
-	current_x_velocity *= 0.9;
-	//gravity accelerates the player down.
-	current_y_velocity += grav;
+//slow the player down a little every frame (helps to make it easier to control)
+current_x_velocity *= 0.9;
+//gravity accelerates the player down.
+current_y_velocity += grav;
 
-	//Change to jumping in air 
-	if(jump and is_on_ground == true){
-		current_y_velocity = bounce_velocity;
-		is_on_ground = false;
-		sprite_index = jump_sprite;
-	}
-	if(is_on_ground){
-			if(sprite_index != attack_sprite){
-				sprite_index = idle_sprite;
-			}
-			if(move_left){
-				image_xscale = -1	
-				x -= move_speed;
-			}
-			if(move_right){
-				image_xscale = 1	
-				x += move_speed;
-			}
-	}
-	else{
-		jump_state();
-	}
-
-	//Player Attacks
-	//opponent_collision = place_meeting(x,y,opponent);
-	opponent_collision = collision_rectangle(x-55, y-20, x+55, y+20, opponent,false, true);
-	if(attack){
-		
-		sprite_index = attack_sprite;
-		
-		if(opponent_collision and opponent.is_hit==false){
-		
-			opponent.current_health--;
-			
-			
-			//Player Stage Boundaries
-			if(opponent.x > room_width-offset_boundary+10){
-				opponent.x = room_width-offset_boundary;
-			}
-			if(opponent.x < offset_boundary-10){
-				opponent.x = offset_boundary;
-			}
-			if(image_xscale == opponent.image_xscale){
-				opponent.image_xscale *= -1;
-			}
-
-			//Set the opponent is hit to true to avoid multiple collision checks
-			opponent.is_hit = true;
-			attack_collision = instance_create_layer(opponent.x,opponent.y+30,"objects",obj_attack_collision);
-			attack_collision.depth = opponent.depth-10;
-			attack_collision.player = opponent;
-			
-			obj_view_manager.shake = true;
-			stop_movement = true;
-			opponent.stop_movement = true;
+//Change to jumping in air 
+if(jump and is_on_ground == true){
+	current_y_velocity = bounce_velocity;
+	is_on_ground = false;
+	sprite_index = jump_sprite;
+}
+if(is_on_ground){
+		if(sprite_index != attack_sprite){
+			sprite_index = idle_sprite;
 		}
+		if(move_left){
+			image_xscale = -1	
+			x -= move_speed;
+		}
+		if(move_right){
+			image_xscale = 1	
+			x += move_speed;
+		}
+}
+else{
+	jump_state();
+}
+
+//Player Attacks
+//opponent_collision = place_meeting(x,y,opponent);
+opponent_collision = collision_rectangle(x-75, y-30, x+75, y+30, opponent,false, true);
+if(attack){
+		
+	sprite_index = attack_sprite;
+		
+	if(opponent_collision and opponent.is_hit==false){
+		
+		opponent.current_health--;
+			
+			
+		//Player Stage Boundaries
+		if(opponent.x > room_width-offset_boundary+10){
+			opponent.x = room_width-offset_boundary;
+		}
+		if(opponent.x < offset_boundary-10){
+			opponent.x = offset_boundary;
+		}
+		if(image_xscale == opponent.image_xscale){
+			opponent.image_xscale *= -1;
+		}
+
+		//Set the opponent is hit to true to avoid multiple collision checks
+		opponent.is_hit = true;
+		attack_collision = instance_create_layer(opponent.x,opponent.y+30,"objects",obj_attack_collision);
+		attack_collision.depth = opponent.depth-10;
+		attack_collision.player = opponent;
+			
+		obj_view_manager.shake = true;
+		stop_movement = true;
+		opponent.stop_movement = true;
 	}
+}
 	
 	
-	//Change player depth
-	if(opponent_collision and (move_left or move_right)){
-		depth = opponent.depth-5;
-	}
+//Change player depth
+if(opponent_collision and (move_left or move_right)){
+	depth = opponent.depth-5;
+}
 
 	
-	combo_collision = collision_rectangle(x-10,y-10,x+10,y+10,obj_combo_activator,false,true)
-	if(combo_collision){
-		combo = true;
-		//Possible set stop movement to true
-		obj_combo_manager.combo_activated = true;
-	}
+combo_collision = collision_rectangle(x-10,y-10,x+10,y+10,obj_combo_activator,false,true)
+if(combo_collision){
+	combo = true;
+	//Possible set stop movement to true
+	obj_combo_manager.combo_activated = true;
+}
 
 
 if(combo == true){ 
@@ -120,9 +120,14 @@ if(combo == true){
 }
 
 if(current_health == 0){
-	global.winner = idle_sprite;//blue player or pink player
+	if(opponent == obj_playerBlue){
+		global.winner = "blue"
+	}
+	else{
+		global.winner = "pink"
+	}//blue player or pink player
 	//Game over
-	//room_goto(rm_end);
+	room_goto(rm_end);
 	//Death State
 }
 

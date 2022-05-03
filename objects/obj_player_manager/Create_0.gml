@@ -1,6 +1,9 @@
+/*blue = instance_create_layer(x,y,"players",obj_playerBlue);
+pink = instance_create_layer(x,y,"players",obj_playerPink);*/
+
 global.winner = noone;
 global.stage_height = 700;//adjust to the ring height
-player_stageY = global.stage_height-85;;
+player_stageY = global.stage_height-85;
 y = player_stageY
 //Player Data
 
@@ -40,7 +43,7 @@ move_speed = 6;
 
 //Spawn Player Blue and Player Pink
 //Set opponent
-opponent = obj_playerPink;
+opponent = noone;
 
 //Generate shadows for player
 shadow_blue = instance_create_layer(x,y,"players",obj_shadow);
@@ -48,9 +51,11 @@ shadow_pink = instance_create_layer(x,y,"players",obj_shadow);
 shadow_pink.player = obj_playerPink;
 
 
-//sprite visual
-idle_sprite = spr_playerBlue
-attack_sprite = spr_playerBlueAttack
-jump_sprite = spr_playerBlueJump
 
-sprite_index = idle_sprite;
+//sprite visual
+
+idle_sprite = noone;
+attack_sprite = noone;
+jump_sprite = noone;
+
+
