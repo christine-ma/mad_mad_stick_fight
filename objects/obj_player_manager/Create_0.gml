@@ -61,5 +61,6 @@ shadow_pink.player = obj_playerPink;
 idle_sprite = noone;
 attack_sprite = noone;
 jump_sprite = noone;
+knockback_sprite = noone;
 
 

@@ -50,6 +50,9 @@ if(is_on_ground){
 		if(sprite_index != attack_sprite){
 			sprite_index = idle_sprite;
 		}
+		if(is_hit){
+			sprite_index = knockback_sprite
+		}
 		if(move_left){
 			image_xscale = -1	
 			x -= move_speed + acceleration_frames + deceleration_frames;
