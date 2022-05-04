@@ -133,7 +133,7 @@
     "path": "folders/Fonts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "fnt_health",
+  "name": "fnt_general",
   "tags": [],
   "resourceType": "GMFont",
 }

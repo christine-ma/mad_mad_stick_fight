@@ -5,4 +5,4 @@ camY = 0;
 shake = false;
 shake_frames = 0;
 shake_max_frames = 10;
-shake_amount = 3;
+shake_amount = 5;

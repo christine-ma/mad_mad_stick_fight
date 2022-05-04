@@ -16,6 +16,27 @@ else{
 	}
 	if (mouse_check_button_released(mb_left) && position_meeting(mouse_x, mouse_y,self)){
 		y = start_y;
+		//Play sound here of bell ring
+		
 		game_next_room = true;
 	}
 }
+
+if(move_frames > move_max_frames){
+	move_frames = 0;
+	if(up == true){
+		up = false;
+	}
+	else if(up == false){
+		up = true;
+	}
+}
+move_frames++;
+
+if(up == true){
+	y-=.5;
+}
+else if(up == false){
+	y+=.5;
+}
+
