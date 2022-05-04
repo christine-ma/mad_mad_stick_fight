@@ -1,3 +1,4 @@
+//Combo is not implemented due to time constraints
 spawn_combo_frames = 0;
 spawn_combo_max_frames = irandom_range(250, 400);
 

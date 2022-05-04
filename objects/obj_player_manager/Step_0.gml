@@ -7,12 +7,12 @@ attack = keyboard_check_pressed(attack_key);
 if(stop_movement == true){
 	if(is_hit){
 		
-		//knock opponent back
+		//the hit player moves the opposite direction of the opponent when hit
 		if(opponent.image_xscale == -1){
-			x -= 1.4*stop_frames;
+			x -= 1.8*stop_frames;
 		}
 		else if (opponent.image_xscale == 1){
-			x += 1.4*stop_frames;
+			x += 1.8*stop_frames;
 		}
 	}
 
@@ -20,11 +20,13 @@ if(stop_movement == true){
 	move_left = noone;
 	move_right = noone;
 	attack = noone;
+	
 	if(stop_frames > stop_max_frames){
 		stop_movement = false;
 		stop_frames = 0;
 		opponent.is_hit=false;
 		instance_destroy(obj_attack_collision);
+		instance_destroy(obj_particle);
 	}
 	stop_frames++;
 	
@@ -40,18 +42,36 @@ if(jump and is_on_ground == true){
 	current_y_velocity = bounce_velocity;
 	is_on_ground = false;
 	sprite_index = jump_sprite;
+	//Add jump sound here if you like
 }
+
 if(is_on_ground){
+		move_speed = 5;
 		if(sprite_index != attack_sprite){
 			sprite_index = idle_sprite;
 		}
 		if(move_left){
 			image_xscale = -1	
-			x -= move_speed;
+			x -= move_speed + acceleration_frames + deceleration_frames;
 		}
 		if(move_right){
 			image_xscale = 1	
-			x += move_speed;
+			x += move_speed + acceleration_frames + deceleration_frames;
+		}
+		if(ground_acceleration == true){
+			acceleration_frames++;
+		}
+		else{
+			//deccelerate
+			deceleration_frames++;
+		}
+		if(acceleration_frames > acceleration_max_frames){
+			acceleration_frames = 0;
+			ground_acceleration = false;
+		}
+		if(deceleration_frames > deceleration_max_frames){
+			deceleration_frames = 0;
+			ground_acceleration = true;
 		}
 }
 else{
@@ -66,6 +86,32 @@ if(attack){
 	sprite_index = attack_sprite;
 		
 	if(opponent_collision and opponent.is_hit==false){
+		//Play sound here: Opponent is hit - Should only play once
+		
+		//Do particle effect
+		for(p = 0; p<10;p++){
+			particle = instance_create_layer(opponent.x,opponent.y+30,"objects",obj_particle)
+			if(opponent == obj_playerBlue){
+				particle.player = obj_playerBlue;
+				if(image_xscale == 1){
+					particle.direction_effect = 1;
+				
+				}
+				if(image_xscale == -1){
+					particle.direction_effect = -1;
+				}
+			}
+			if(opponent == obj_playerPink){
+				particle.player = obj_playerPink;
+				if(image_xscale == 1){
+					particle.direction_effect = 1;
+				
+				}
+				if(image_xscale == -1){
+					particle.direction_effect = -1;
+				}
+			}
+		}
 		
 		opponent.current_health--;
 			
@@ -128,7 +174,7 @@ if(current_health == 0){
 	}//blue player or pink player
 	//Game over
 	room_goto(rm_end);
-	//Death State
+
 }
 
 offset_boundary = 125;
@@ -141,10 +187,13 @@ if(x < offset_boundary){
 }
 
 function jump_state(){
-	if(move_left){
+		
+		if(move_left){
+			image_xscale = -1	
 			current_x_velocity -= player_acceleration;	
 		}
 		if(move_right){
+			image_xscale = 1	
 			current_x_velocity += player_acceleration;
 		}
 		true_x += current_x_velocity
@@ -175,8 +224,7 @@ function jump_state(){
 			//if not colliding a wall, just move our full velocity in x
 			x += tomovex;
 		}
-		//var colliding = false; 
-		//var bread_ground = noone;
+
 		while (tomovey!=0)
 		{
 			//get the direction of vertical movement
@@ -184,51 +232,13 @@ function jump_state(){
 			//move
 			y = y + sy; //add to the y axis with whether we are moving up or down
 			tomovey = tomovey - sy;
-			//if colliding with ground, stop movement and return to idle
-			/*bread_platform = instance_position(x,y+sy,obj_bread);
-			if ((bread_platform != noone or bread_base != noone)) { //touching a bread
-				if(sprite_index == down){
-					colliding = true;
-					//only collide if not already overlapping
-					if(instance_exists(bread_platform)){
-						if (place_meeting(x,y,bread_platform)==false){
-								//Stop jumping
-								air = false;
-								break;
-						}
-						
-					}
-					
-					if(place_meeting(x,y,bread_base)==true){
-						air = false;
-						break;
-					}
-				}
-			}*/
+			
 			if(y > player_stageY){
 				y = player_stageY;
 				is_on_ground = true;
 			}
 		}
-		if (current_y_velocity > 0) {
-			//show downward movement sprites
-			/*if(air==false){
-				sprite_index = idle;
-			}
-			else if (sprite_index != down) {
-				image_speed =1;
-				image_index = 0;
-				sprite_index = down;
-			}*/
-		}
-		else {
-			//show upward movement sprites
-			/*if (sprite_index != up) {
-				image_speed= 1;
-				image_index = 0;
-				sprite_index = up;
-			}	*/
-		}
+		
 }
 	
 

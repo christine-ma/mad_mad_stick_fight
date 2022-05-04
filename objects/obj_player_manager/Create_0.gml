@@ -1,5 +1,4 @@
-/*blue = instance_create_layer(x,y,"players",obj_playerBlue);
-pink = instance_create_layer(x,y,"players",obj_playerPink);*/
+
 
 global.winner = noone;
 global.stage_height = 700;//adjust to the ring height
@@ -8,7 +7,7 @@ y = player_stageY
 //Player Data
 
 //Health Bar
-current_health = 10;
+current_health = 25;
 
 //Player States
 is_on_ground = true;
@@ -33,13 +32,18 @@ current_y_velocity = 0;
 true_x = 0;
 true_y = 0;
 
-grav = 0.85;
+grav = 1;
 
 bounce_velocity = -25;//need this to be a negative value so we move upwards
-player_acceleration = 1.5;
+player_acceleration = .5;
 
 //Move when on ground
-move_speed = 6;
+move_speed = 7;
+ground_acceleration = true;
+acceleration_frames = 0;
+acceleration_max_frames = 25;
+deceleration_frames = 0;
+deceleration_max_frames = 25;
 
 //Spawn Player Blue and Player Pink
 //Set opponent
