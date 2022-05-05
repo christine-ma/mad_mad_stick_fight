@@ -23,6 +23,11 @@ if(stop_movement == true){
 	attack = noone;
 	
 	if(stop_frames > stop_max_frames){
+		//Game over
+		if(global.winner != noone){
+			//Game over
+			room_goto(rm_end);
+		}
 		stop_movement = false;
 		stop_frames = 0;
 		opponent.is_hit=false;
@@ -183,8 +188,8 @@ if(current_health == 0){
 	else{
 		global.winner = "pink"
 	}//blue player or pink player
-	//Game over
-	room_goto(rm_end);
+	//Game will wait a few frames before going to end screen
+	
 
 }
 

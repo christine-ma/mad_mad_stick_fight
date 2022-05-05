@@ -5,8 +5,8 @@ if(room = rm_start){
 }
 if(room == rm_game){
 	draw_set_font(fnt_general)
-	blue_health = (obj_playerBlue.current_health/25)*100
-	pink_health = (obj_playerPink.current_health/25)*100
+	blue_health = (obj_playerBlue.current_health/global.max_health)*100
+	pink_health = (obj_playerPink.current_health/global.max_health)*100
 	blue_color  = make_color_rgb(7,192,223)
 	pink_color = make_color_rgb(228,0,140)
 	back_color =  make_color_rgb(48,37,94)

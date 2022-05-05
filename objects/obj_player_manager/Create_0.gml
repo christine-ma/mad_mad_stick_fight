@@ -7,7 +7,8 @@ y = player_stageY
 //Player Data
 
 //Health Bar
-current_health = 25;
+current_health = 20;
+global.max_health = current_health;
 
 //Player States
 is_on_ground = true;
