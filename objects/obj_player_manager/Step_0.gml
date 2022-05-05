@@ -6,7 +6,7 @@ attack = keyboard_check_pressed(attack_key);
 //Stop user input movement
 if(stop_movement == true){
 	if(is_hit){
-		
+		cooldown = true;
 		//the hit player moves the opposite direction of the opponent when hit
 		if(opponent.image_xscale == -1){
 			x -= 1.8*stop_frames;
@@ -31,7 +31,13 @@ if(stop_movement == true){
 	stop_frames++;
 	
 }
-
+if(cooldown==true){
+	cooldown_frames++;
+	if(cooldown_frames>cooldown_max_frames){
+		cooldown_frames = 0;
+		cooldown = false;
+	}
+}
 //slow the player down a little every frame (helps to make it easier to control)
 current_x_velocity *= 0.9;
 //gravity accelerates the player down.
@@ -88,7 +94,7 @@ if(attack){
 		
 	sprite_index = attack_sprite;
 		
-	if(opponent_collision and opponent.is_hit==false){
+	if(opponent_collision and opponent.is_hit==false and opponent.cooldown == false){
 		//Play sound here: Opponent is hit - Should only play once
 		
 		//Do particle effect
