@@ -17,6 +17,7 @@ else{
 	if (mouse_check_button_released(mb_left) && position_meeting(mouse_x, mouse_y,self)){
 		y = start_y;
 		//Play sound here of bell ring
+		audio_play_sound(boxingBell, 10, false);
 		
 		game_next_room = true;
 	}

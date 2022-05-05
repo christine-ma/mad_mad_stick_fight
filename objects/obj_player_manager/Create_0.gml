@@ -43,6 +43,12 @@ grav = 1;
 bounce_velocity = -25;//need this to be a negative value so we move upwards
 player_acceleration = .6;
 
+//crowd background noise and background music
+
+audio_play_sound(crowdFighting, 10, true);
+audio_play_sound(backgroundMusic, 10, true);
+
+
 //Move when on ground
 move_speed = 7;
 ground_acceleration = true;

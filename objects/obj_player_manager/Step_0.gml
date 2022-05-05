@@ -1,3 +1,6 @@
+
+
+
 move_left = keyboard_check(left_key);
 move_right = keyboard_check(right_key);
 jump = keyboard_check(jump_key);
@@ -56,6 +59,7 @@ if(jump and is_on_ground == true){
 	is_on_ground = false;
 	sprite_index = jump_sprite;
 	//Add jump sound here if you like
+	audio_play_sound(jumping, 10, false);
 }
 
 if(is_on_ground){
@@ -103,6 +107,7 @@ if(attack){
 		
 	if(opponent_collision and opponent.is_hit==false and opponent.cooldown == false){
 		//Play sound here: Opponent is hit - Should only play once
+		audio_play_sound(punching, 10, false);
 		
 		//Do particle effect
 		for(p = 0; p<10;p++){
@@ -228,6 +233,7 @@ function jump_state(){
 			current_x_velocity = abs(current_x_velocity) * -1;
 			true_x =  0;
 			//PLAY WALL BOUNCE SOUND HERE
+			audio_play_sound(wallBounce, 10, false);
 			
 		}
 		else if (tomovex < -dist_to_left_wall){
