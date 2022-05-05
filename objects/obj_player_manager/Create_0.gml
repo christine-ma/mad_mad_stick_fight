@@ -68,4 +68,5 @@ attack_sprite = noone;
 jump_sprite = noone;
 knockback_sprite = noone;
 
+sprite_index = idle_sprite;
 
