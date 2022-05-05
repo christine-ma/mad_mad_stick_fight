@@ -7,9 +7,10 @@ draw_set_valign(fa_center);
 draw_set_font(fnt_title);
 shakeX = irandom_range(-4,4);
 shakeY = irandom_range(-4,4);
-draw_text(room_width/2+shakeX,200+shakeY,"MAD MAD");
-draw_text(room_width/2+shakeX,390+shakeY,"STICK FIGHT!!!!!");
+draw_text(room_width/2+shakeX,170+shakeY,"MAD MAD");
+draw_text(room_width/2+shakeX,320+shakeY,"STICK FIGHT!!!!!");
 draw_set_font(fnt_general)
+draw_text(room_width/2,420,"by Tati and Christine");
 draw_set_color(blue_color);
 draw_text(room_width/2-450,600,"Blue Player:\nLeft: A\nRight :D\nJump: W\nAttack: S");
 draw_set_color(pink_color);

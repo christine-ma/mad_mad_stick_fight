@@ -1,7 +1,7 @@
 move_left = keyboard_check(left_key);
 move_right = keyboard_check(right_key);
 jump = keyboard_check(jump_key);
-attack = keyboard_check(attack_key);
+attack = keyboard_check_pressed(attack_key);
 
 //Stop user input movement
 if(stop_movement == true){
