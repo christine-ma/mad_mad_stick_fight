@@ -14,6 +14,11 @@ is_on_ground = true;
 combo = false;
 is_hit = false;
 
+cooldown = false;
+
+cooldown_frames = 0;
+cooldown_max_frames = 30;
+
 //Stop all player movement for a small time frame
 stop_movement = false;
 stop_frames = 0;
@@ -35,7 +40,7 @@ true_y = 0;
 grav = 1;
 
 bounce_velocity = -25;//need this to be a negative value so we move upwards
-player_acceleration = .5;
+player_acceleration = .6;
 
 //Move when on ground
 move_speed = 7;
